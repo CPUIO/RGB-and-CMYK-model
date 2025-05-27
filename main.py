@@ -14,8 +14,7 @@ def main():
 		rgb = sys.argv[2]
 		cmy = []
 		for i in range(1,6,2):
-			if int(rgb[i:i+2],16) != 0:
-				cmy.append(int(rgb[i:i+2],16)/255)
+			cmy.append(int(rgb[i:i+2],16)/255)
 		black = 1 - max(cmy)
 		if black == 1:
 			cmyk = (0,0,0,1)
