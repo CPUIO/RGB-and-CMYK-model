@@ -1,0 +1,33 @@
+import sys
+import json
+
+def main():
+	if sys.argv[1] == "rgb":
+		cmyk = json.loads(sys.argv[2].replace("(", "[").replace(")", "]"))
+		rgb = "#"
+		for i in range(3):
+			rgb += hex(int(255*(1-(cmyk[i]/100))*(1-(cmyk[3]/100))))[2:]
+		print(rgb)
+
+	elif sys.argv[1] == "cmyk":
+		rgb = sys.argv[2]
+		cmy = []
+		for i in range(1,6,2):
+			if int(rgb[i:i+2],16) != 0:
+				cmy.append(int(rgb[i:i+2],16)/255)
+		black = 1 - max(cmy)
+		if black == 1:
+			cmyk = (0,0,0,1)
+		else:
+			cmyk = ( round((1 - cmy[0] - black) / (1 - black) * 100),
+			round((1 - cmy[1] - black) / (1 - black) * 100),
+			round((1 - cmy[2] - black) / (1 - black) * 100),
+			round(black * 100))
+
+		print(cmyk)
+	else:
+		print("Введён неправильный флаг преобразования!")
+		exit(1)
+
+if __name__=="__main__":
+	main()
