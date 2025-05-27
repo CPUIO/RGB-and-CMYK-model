@@ -6,7 +6,8 @@ def main():
 		cmyk = json.loads(sys.argv[2].replace("(", "[").replace(")", "]"))
 		rgb = "#"
 		for i in range(3):
-			rgb += hex(int(255*(1-(cmyk[i]/100))*(1-(cmyk[3]/100))))[2:]
+			ii = hex(int(255*(1-(cmyk[i]/100))*(1-(cmyk[3]/100))))[2:]
+			rgb += "0"*(2-len(ii))+ii
 		print(rgb)
 
 	elif sys.argv[1] == "cmyk":
