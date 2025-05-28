@@ -17,7 +17,7 @@ def main():
 			cmy.append(int(rgb[i:i+2],16)/255)
 		black = 1 - max(cmy)
 		if black == 1:
-			cmyk = (0,0,0,1)
+			cmyk = (0,0,0,100)
 		else:
 			cmyk = ( round((1 - cmy[0] - black) / (1 - black) * 100),
 			round((1 - cmy[1] - black) / (1 - black) * 100),
